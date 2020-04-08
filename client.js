@@ -6,8 +6,8 @@ const net = require('net');
 
 const connect = function() {
   const conn = net.createConnection({
-    // host: '50.64.116.162',
-    host: 'localhost',
+    host: '50.64.116.162',
+    // host: 'localhost',
     port: 50541
     
   });
@@ -18,19 +18,6 @@ const connect = function() {
     console.log('Successfully connected to game server');
     conn.write('Name: RWC');
   });
-
-  conn.on('connect', () => {
-    setTimeout(() => {
-      conn.write('Move: up');
-    }, 1000);
-  });
-  conn.on('connect', () => {
-    setInterval(() => {
-      conn.write('Move: up');
-    }, 2000);
-  });
-
-  
 
   conn.on('data', (data) => {
     console.log(data);
