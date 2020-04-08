@@ -1,3 +1,5 @@
+const { MAPPING } = require('./constants');
+
 let connection;
 
 const setupInput = (conn) => {
@@ -12,14 +14,8 @@ const setupInput = (conn) => {
 
 const handleUserInput = () => {
   process.stdin.on('data', (key) => {
-    if (key === 'w') connection.write('Move: up');
-    if (key === 'a') connection.write('Move: left');
-    if (key === 's') connection.write('Move: down');
-    if (key === 'd') connection.write('Move: right');
-    if (key === 'g') connection.write('Say: gg');
-    if (key === 'b') connection.write('Say: sup');
-
     if (key === '\u0003') process.exit();
+    connection.write(MAPPING[key]);
   });
 };
 
